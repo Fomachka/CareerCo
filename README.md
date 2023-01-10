@@ -1,10 +1,6 @@
 # Career/Co. Website
 
-This repo is for a job searching website, available at https://jobsearchingapp.netlify.app.
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo is for a job searching website, available at https://jobsearchingapp.netlify.app/
 
 ## Available Scripts
 
