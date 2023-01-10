@@ -1,6 +1,6 @@
 # Career/Co. Website
 
-This repo is for a job searching website, available at https://jobsearchingapp.netlify.app/
+This repo is for a job searching website, available at https://careerco.netlify.app.
 
 ## Available Scripts
 
