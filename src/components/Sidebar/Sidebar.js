@@ -52,11 +52,11 @@ const Sidebar = () => {
   return (
     <>
       {isLoggedIn && (
-        <aside className="sidebar">
+        <nav className="sidebar">
           <nav className="sidebar__nav">
-            <a className="sidebar__logo" href="/dashboard">
+            <Link className="sidebar__logo" to="/dashboard">
               CAREER/CO.
-            </a>
+            </Link>
             <div className="desktop__modal--menu">
               <ul className="desktop__modal--ul">
                 <li className="desktop__modal--li">
@@ -87,7 +87,7 @@ const Sidebar = () => {
             </div>
             {link}
           </nav>
-        </aside>
+        </nav>
       )}
     </>
   );
