@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import {
+  LoginPage,
+  SignUp,
+  ErrorPage,
+  MainPage,
+  Dashboard,
+  SearchJobs,
+  AddJob,
+  MyJobs,
+  JobDetails,
+  Sidebar,
+} from "./components";
+import { BrowserRouter } from "react-router-dom";
+import { useAuth } from "./hooks/use-auth";
+
+const App = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`'App' ${isLoggedIn ? "App__logged" : ""}`}>
+      <BrowserRouter>
+        <Sidebar />
+        <Routes>
+          <Route path="*" element={<ErrorPage />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="accounts" element={<MainPage />} />
+          <Route path="accounts/login" element={<LoginPage />} />
+          <Route path="accounts/signup" element={<SignUp />} />
+
+          {isLoggedIn && (
+            <>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="searchjobs" element={<SearchJobs />} />
+              <Route path="searchjobs/:id" element={<JobDetails />} />
+              <Route path="myjobs" element={<MyJobs />} />
+              <Route path="addjob" element={<AddJob />} />
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
