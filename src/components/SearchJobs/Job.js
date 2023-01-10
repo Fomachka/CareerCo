@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { HeartEmpty, HeartFull, Building, Location, Person } from "../../images/icons/export";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";

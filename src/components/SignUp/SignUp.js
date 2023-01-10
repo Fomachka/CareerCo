@@ -49,7 +49,6 @@ const SignUp = () => {
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        console.log(user);
         updateProfile(auth.currentUser, { displayName: name });
         dispatch(
           setAccount({
