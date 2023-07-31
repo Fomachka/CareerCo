@@ -84,7 +84,13 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit} className="login__form">
           <article>
             <div className="login__div--img">
-              <img src={starImg} alt="star decoration" className="login__starImg" />
+              <img
+                src={starImg}
+                alt="star decoration"
+                className="login__starImg"
+                width={47}
+                height={47}
+              />
             </div>
             <header className="login__header--welcome">
               <h1>Welcome!</h1>
@@ -94,7 +100,11 @@ const LoginPage = () => {
             <div className={`login__error ${error ? "login__error--active" : null}`}>
               {error ? (
                 <>
-                  <img src={closeIcon} alt="close error button" onClick={() => setError(null)} />
+                  <img
+                    src={closeIcon}
+                    alt="close error button"
+                    onClick={() => setError(null)}
+                  />
                   <p>{error}</p>
                 </>
               ) : null}
@@ -122,7 +132,11 @@ const LoginPage = () => {
                 autoComplete="on"
                 required
               />
-              <img src={passwordIcon} alt="password hiding icon" className="login__input--icon" />
+              <img
+                src={passwordIcon}
+                alt="password hiding icon"
+                className="login__input--icon"
+              />
             </div>
           </article>
           <article className="login__article--credentials">

@@ -9,8 +9,6 @@ import yellowCase from "./yellow_case.svg";
 
 import { ReactComponent as MenuIcon } from "./menu.svg";
 
-import profile from "./modal/profile.png";
-
 import { ReactComponent as ExpandIcon } from "./expand_btn.svg";
 import { ReactComponent as RightIcon } from "./right_arrow.svg";
 import { ReactComponent as LeftIcon } from "./left_arrow.svg";
@@ -41,7 +39,6 @@ export {
   greenCase,
   redCase,
   yellowCase,
-  profile,
   StarSingle,
   ExpandIcon,
   RightIcon,

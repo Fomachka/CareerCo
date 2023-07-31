@@ -54,7 +54,10 @@ const JobCard = ({ userInfo }) => {
           </div>
         </div>
         <div className="jobcard__info--bot3">
-          <div className="jobcard__info--block block3" onClick={() => handleRemove(userInfo.id)}>
+          <div
+            className="jobcard__info--block block3"
+            onClick={() => handleRemove(userInfo.id)}
+          >
             <p>Remove</p>
           </div>
         </div>

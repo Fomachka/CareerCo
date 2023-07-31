@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { HeaderMobile, HeaderDesktop } from "../";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { ExpandIcon } from "../../images/icons/export";
 import JobCard from "./JobCard";
-import { collection } from "firebase/firestore";
-import { db } from "../../firebase";
+// import { collection } from "firebase/firestore";
+// import { db } from "../../firebase";
 import { useAuth } from "../../hooks/use-auth";
 import { useCollection } from "../../hooks/use-collection";
 import Pagination from "./Pagination";
@@ -12,10 +12,11 @@ import Pagination from "./Pagination";
 const MyJobs = () => {
   const { id } = useAuth();
   const selector = useSelector((state) => state.users);
+  console.log(selector);
   const { users } = useCollection("users");
   const [user, setUser] = useState();
-  const dispatch = useDispatch();
-  const usersCollectionRef = collection(db, "users");
+  // const dispatch = useDispatch();
+  // const usersCollectionRef = collection(db, "users");
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("Show All");
   const [active, setActive] = useState(false);
@@ -29,7 +30,9 @@ const MyJobs = () => {
     if (users) {
       if (status === "Show All" && position.length > 0) {
         setUser(
-          users.filter((user) => user.position.toLowerCase().includes(position.toLowerCase()))
+          users.filter((user) =>
+            user.position.toLowerCase().includes(position.toLowerCase())
+          )
         );
       } else if (status === "Show All" && !position.length) {
         setUser(users);
@@ -37,7 +40,9 @@ const MyJobs = () => {
         setUser(
           users
             .filter((post) => post.status === status)
-            .filter((user) => user.position.toLowerCase().includes(position.toLowerCase()))
+            .filter((user) =>
+              user.position.toLowerCase().includes(position.toLowerCase())
+            )
         );
       } else if (status && !position.length) {
         setUser(users.filter((post) => post.status === status));
@@ -60,7 +65,9 @@ const MyJobs = () => {
   };
 
   const handlePage = (pageNumber) => {
-    const maxPages = Math.ceil(user?.filter((user) => user.uid === id).length / postsPerPage);
+    const maxPages = Math.ceil(
+      user?.filter((user) => user.uid === id).length / postsPerPage
+    );
     if (pageNumber < 1) {
       setCurrentPage(maxPages);
     } else if (pageNumber > maxPages) {
@@ -123,11 +130,16 @@ const MyJobs = () => {
           </div>
         ) : (
           <section className="myjobs">
-            {user != null &&
+            {user != null && selector.length > 0 ? (
               user
                 .filter((user) => user.uid === id)
                 .slice(indexOfFirstPost, indexOfLastPost)
-                .map((user) => <JobCard key={user.id} userInfo={user} />)}
+                .map((user) => <JobCard key={user.id} userInfo={user} />)
+            ) : (
+              <p className="myjobs__empty">
+                The list is empty, please add jobs to continue.
+              </p>
+            )}
           </section>
         )}
       </main>

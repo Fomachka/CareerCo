@@ -908,6 +908,19 @@
   margin-top: 35px;
 }
 
+.myjobs__empty {
+  background: var(--color-red);
+  padding: 30px 35px 35px 30px;
+  font-family: var(--font-main);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border: var(--border-width) solid var(--color-grey-border);
+  line-height: 30px;
+  color: var(--color-white);
+  font-size: 16px;
+}
+
 .myjobs__error {
   font-family: var(--font-main);
   font-size: 1.6rem;
