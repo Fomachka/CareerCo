@@ -80,7 +80,13 @@ const SignUp = () => {
         <form onSubmit={handleSubmit} className="login__form">
           <article>
             <div className="login__div--img">
-              <img src={starImg} alt="star decoration" className="login__starImg" />
+              <img
+                src={starImg}
+                alt="star decoration"
+                className="login__starImg"
+                width={47}
+                height={47}
+              />
             </div>
             <header className="login__header--welcome">
               <h1>Sign Up</h1>
@@ -90,7 +96,13 @@ const SignUp = () => {
             <div className={`login__error ${error ? "login__error--active" : null}`}>
               {error ? (
                 <>
-                  <img src={closeIcon} alt="close error button" onClick={() => setError(null)} />
+                  <img
+                    src={closeIcon}
+                    alt="close error button"
+                    onClick={() => setError(null)}
+                    width={48}
+                    hight={48}
+                  />
                   <p>{error}</p>
                 </>
               ) : null}

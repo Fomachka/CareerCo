@@ -20,11 +20,15 @@ const SearchJobs = () => {
 
   let currentPosts = () => {
     if (input && !location) {
-      return jobs?.filter((post) => post.position.toLowerCase().includes(input.toLowerCase()));
+      return jobs?.filter((post) =>
+        post.position.toLowerCase().includes(input.toLowerCase())
+      );
     } else if (!input && !location) {
       return jobs;
     } else if (!input && location) {
-      return jobs?.filter((post) => post.location.toLowerCase().includes(location.toLowerCase()));
+      return jobs?.filter((post) =>
+        post.location.toLowerCase().includes(location.toLowerCase())
+      );
     } else if (input && location) {
       return jobs
         ?.filter((post) => post.location.toLowerCase().includes(location.toLowerCase()))
@@ -48,7 +52,9 @@ const SearchJobs = () => {
     setLoading(true);
     const fetchApi = async () => {
       try {
-        const response = await fetch("https://jobsearch-api-production.up.railway.app/jobs");
+        const response = await fetch(
+          "https://jobsearch-api-production.up.railway.app/jobs"
+        );
         const data = await response.json();
         setJobs(data);
         localStorage.setItem("data", JSON.stringify(data));

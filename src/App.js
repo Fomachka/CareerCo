@@ -23,7 +23,7 @@ const App = () => {
       <BrowserRouter>
         <Sidebar />
         <Routes>
-          <Route path="*" element={<ErrorPage />} />
+          <Route element={<ErrorPage />} />
           <Route path="/" element={<MainPage />} />
           <Route path="accounts" element={<MainPage />} />
           <Route path="accounts/login" element={<LoginPage />} />

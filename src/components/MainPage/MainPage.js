@@ -10,24 +10,24 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const handleLogout = async (e) => {
+      try {
+        await signOut(auth);
+        navigate("/accounts");
+      } catch (e) {
+        navigate("/error");
+      }
+    };
     handleLogout();
   }, []);
 
-  const handleLogout = async (e) => {
-    try {
-      await signOut(auth);
-      navigate("/accounts");
-    } catch (e) {
-      navigate("/error");
-    }
-  };
   return (
     <div className="mainpage">
       <section>
         <h1>CAREER/CO.</h1>
         <p>
-          Find your dream job by using our unique tool to keep track of your job opportunities and
-          listings
+          Find your dream job by using our unique tool to keep track of your job
+          opportunities and listings
         </p>
       </section>
       <WateringSVG className="mainpage__svg" />

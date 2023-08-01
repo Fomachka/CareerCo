@@ -74,7 +74,11 @@ const AddJob = () => {
 
     dispatch(setForm(state));
     for (let job of selector) {
-      if (state && job.companyName === state.companyName && job.position === state.position) {
+      if (
+        state &&
+        job.companyName === state.companyName &&
+        job.position === state.position
+      ) {
         setError(true);
         return;
       }

@@ -20,6 +20,7 @@ import { useAuth } from "../../hooks/use-auth";
 
 const Sidebar = () => {
   const [link, setLink] = useState(null);
+  const [active, setActive] = useState("dashboard");
   const { isLoggedIn } = useAuth();
   const location = useLocation();
 
@@ -60,32 +61,56 @@ const Sidebar = () => {
             <div className="desktop__modal--menu">
               <ul className="desktop__modal--ul">
                 <li className="desktop__modal--li">
-                  <Link to="/dashboard" className="desktop__modal--link">
+                  <Link
+                    to="/dashboard"
+                    className={`${
+                      active === "dashboard" && "desktop__modal--active"
+                    } desktop__modal--link`}
+                    onClick={() => setActive("dashboard")}
+                  >
                     <DashboardIcon className="desktop__modal--icon" />
                     <p>Dashboard</p>
                   </Link>
                 </li>
                 <li className="desktop__modal--li">
-                  <Link to="/searchjobs" className="desktop__modal--link">
+                  <Link
+                    to="/searchjobs"
+                    className={`${
+                      active === "searchjobs" && "desktop__modal--active"
+                    } desktop__modal--link`}
+                    onClick={() => setActive("searchjobs")}
+                  >
                     <SearchJobsIcon className="desktop__modal--icon" />
                     <p>Search Jobs</p>
                   </Link>
                 </li>
                 <li className="desktop__modal--li">
-                  <Link to="/myjobs" className="desktop__modal--link">
+                  <Link
+                    to="/myjobs"
+                    className={`${
+                      active === "myjobs" && "desktop__modal--active"
+                    } desktop__modal--link`}
+                    onClick={() => setActive("myjobs")}
+                  >
                     <SavedJobsIcon className="desktop__modal--icon" />
                     <p>My Jobs</p>
                   </Link>
                 </li>
                 <li className="desktop__modal--li">
-                  <Link to="/addjob" className="desktop__modal--link">
+                  <Link
+                    to="/addjob"
+                    className={`${
+                      active === "addjob" && "desktop__modal--active"
+                    } desktop__modal--link`}
+                    onClick={() => setActive("addjob")}
+                  >
                     <AddJobIcon className="desktop__modal--icon" />
                     <p>Add Job</p>
                   </Link>
                 </li>
               </ul>
             </div>
-            {link}
+            <div className="sidebar__img">{link}</div>
           </nav>
         </nav>
       )}

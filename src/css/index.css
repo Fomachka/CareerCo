@@ -4,6 +4,7 @@
   --color-black-dark: rgb(0, 0, 0);
   --color-black: rgb(59, 59, 59);
   --color-blue: rgb(63, 96, 160);
+  --color-blue-dark: rgb(46, 76, 136);
   --color-blue-light: rgb(98, 134, 203);
   --color-grey-border: rgb(133, 133, 133);
   --color-white: rgb(255, 255, 255);
@@ -30,6 +31,8 @@
 
   --color-hr: rgb(217, 217, 217);
 
+  --border-radius: 5px;
+  --border-radius-sm: 3px;
   --border-grey-radius: 3px;
   --border-width: 1px;
   --border-width-small: 0.5px;
@@ -107,6 +110,8 @@
 .mainpage__svg {
   max-width: 450px;
   max-height: 350px;
+  width: 100%;
+  height: 100%;
 }
 
 .mainpage__a {
@@ -147,11 +152,11 @@
 }
 
 .login__section {
-  padding: 0 2vw;
+  margin-top: 2rem;
 }
 
 .login__starImg {
-  margin: 30px 10vw 15px 10vw;
+  margin: 30px 10vw 35px 10vw;
 }
 
 .login__header--welcome {
@@ -175,7 +180,7 @@
 }
 
 .login__article--credentials {
-  margin: 0 auto 5vh auto;
+  margin: 0 auto 2rem auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -197,6 +202,7 @@
   border: var(--border-width) solid var(--color-grey-border);
   min-width: 100%;
   box-sizing: border-box;
+  border-radius: var(--border-radius);
 }
 
 .login__input--id::placeholder {
@@ -228,14 +234,15 @@
   font-size: 1.125rem;
   border: var(--border-width) solid var(--color-black);
   width: 100%;
+  border-radius: var(--border-radius);
 }
 
 .login__button--signin {
   background: var(--color-blue);
 }
 
-.login__button--trydemo {
-  background: var(--color-blue-light);
+.login__button--signin:hover {
+  background: var(--color-blue-dark);
 }
 
 .login__footer {
@@ -273,7 +280,7 @@
 }
 
 .login__form {
-  max-width: 550px;
+  max-width: 650px;
   margin: 0 auto;
   text-align: center;
 }
@@ -591,6 +598,7 @@
   flex-direction: column;
   gap: 30px;
   border: var(--border-width) solid var(--color-grey-border);
+  border-radius: var(--border-radius);
 }
 
 .searchjobs__input {
@@ -666,6 +674,7 @@
   display: flex;
   flex-direction: column;
   border: var(--border-width) solid var(--color-grey-border);
+  border-radius: var(--border-radius);
 }
 
 .job__header {
@@ -752,6 +761,7 @@
   flex-direction: column;
   gap: 30px;
   border: var(--border-width) solid var(--color-grey-border);
+  border-radius: var(--border-radius);
 }
 
 .addjob__input {
@@ -821,6 +831,7 @@
   font-size: 1.125rem;
   width: 100%;
   padding: 20px;
+  border-radius: var(--border-radius-sm);
 }
 .addjob__btn:hover {
   cursor: pointer;
@@ -906,6 +917,7 @@
   flex-direction: column;
   gap: 35px;
   margin-top: 35px;
+  width: 100%;
 }
 
 .myjobs__empty {
@@ -919,6 +931,7 @@
   line-height: 30px;
   color: var(--color-white);
   font-size: 16px;
+  border-radius: var(--border-radius);
 }
 
 .myjobs__error {
@@ -933,6 +946,7 @@
   background: var(--color-white);
   padding: 25px;
   border: var(--border-width) solid var(--color-grey-border);
+  border-radius: var(--border-radius);
 }
 
 .jobcard__container p {
@@ -1050,7 +1064,6 @@
 }
 
 .jobcard__info--bot3 {
-  margin-top: 10px;
   align-self: flex-end;
 }
 
@@ -1223,6 +1236,11 @@
 .loading {
   background: var(--color-background);
 }
+
+.loading__container {
+  width: 100%;
+  height: 100%;
+}
 /* Pagination */
 .pagination {
   display: flex;
@@ -1240,6 +1258,7 @@
   min-height: 100%;
   border: var(--border-width-small) solid var(--color-grey-border);
   background: var(--color-white);
+  border-radius: var(--border-radius-sm);
 }
 .pagination__btn:hover {
   background: whitesmoke;
@@ -1271,6 +1290,7 @@
   font-family: var(--font-main);
   font-size: 0.875rem;
   border: var(--border-width-small) solid var(--color-grey-border);
+  border-radius: var(--border-radius-sm);
 }
 
 @media screen and (max-width: 375px) {
@@ -1380,9 +1400,7 @@
   .login__header--welcome h1 {
     font-size: 2.9rem;
   }
-  .login__article--credentials {
-    margin-bottom: 5vh;
-  }
+
   .login__starImg {
     margin: 30px -5vw 15px 10vw;
     width: 60px;
@@ -1393,7 +1411,10 @@
 
   .login__svg {
     display: inline-block;
-    margin-top: 50px;
+    width: 100%;
+    height: 100%;
+    max-width: 360px;
+    max-height: 360px;
   }
   .signup__svg {
     display: inline-block;
@@ -1442,6 +1463,7 @@
     font-size: 1.125rem;
     width: 100%;
     padding: 23px;
+    border-radius: var(--border-radius-sm);
   }
   .addjob__btn--clear:hover {
     cursor: pointer;
@@ -1562,6 +1584,14 @@
     color: var(--color-blue);
     cursor: pointer;
   }
+
+  .sidebar__img > svg {
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    max-height: 240px;
+  }
+
   .desktop__modal--ul {
     display: flex;
     flex-direction: column;
@@ -1609,6 +1639,15 @@
     width: 32px;
     height: 32px;
     fill: var(--color-grey-border);
+  }
+
+  .desktop__modal--active {
+    color: var(--color-blue);
+    fill: var(--color-blue);
+  }
+
+  .desktop__modal--active .desktop__modal--icon {
+    fill: var(--color-blue);
   }
 
   .status__info p {

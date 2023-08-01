@@ -1,58 +1,26 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { HeaderMobile, HeaderDesktop } from "../";
-import { useSelector } from "react-redux";
 import { ExpandIcon } from "../../images/icons/export";
 import JobCard from "./JobCard";
-// import { collection } from "firebase/firestore";
-// import { db } from "../../firebase";
+
 import { useAuth } from "../../hooks/use-auth";
 import { useCollection } from "../../hooks/use-collection";
 import Pagination from "./Pagination";
+import { Loading } from "../../images/icons/export";
 
 const MyJobs = () => {
   const { id } = useAuth();
-  const selector = useSelector((state) => state.users);
-  console.log(selector);
   const { users } = useCollection("users");
   const [user, setUser] = useState();
-  // const dispatch = useDispatch();
-  // const usersCollectionRef = collection(db, "users");
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("Show All");
   const [active, setActive] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-
-  const currentPosts = useCallback(() => {
-    if (users) {
-      if (status === "Show All" && position.length > 0) {
-        setUser(
-          users.filter((user) =>
-            user.position.toLowerCase().includes(position.toLowerCase())
-          )
-        );
-      } else if (status === "Show All" && !position.length) {
-        setUser(users);
-      } else if (status && position.length > 0) {
-        setUser(
-          users
-            .filter((post) => post.status === status)
-            .filter((user) =>
-              user.position.toLowerCase().includes(position.toLowerCase())
-            )
-        );
-      } else if (status && !position.length) {
-        setUser(users.filter((post) => post.status === status));
-      }
-    }
-  }, [status, position, users]);
-
-  useEffect(() => {
-    currentPosts();
-  }, [currentPosts]);
 
   const handleDropDown = () => {
     setActive((prev) => !prev);
@@ -82,6 +50,38 @@ const MyJobs = () => {
     setPosition(value);
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    const currentPosts = () => {
+      if (users && !loading) {
+        if (status === "Show All" && position.length > 0) {
+          setUser(
+            users.filter((user) =>
+              user.position.toLowerCase().includes(position.toLowerCase())
+            )
+          );
+        } else if (status === "Show All" && !position.length) {
+          setUser(users);
+        } else if (status && position.length > 0) {
+          setUser(
+            users
+              .filter((post) => post.status === status)
+              .filter((user) =>
+                user.position.toLowerCase().includes(position.toLowerCase())
+              )
+          );
+        } else if (status && !position.length) {
+          setUser(users.filter((post) => post.status === status));
+        }
+      }
+      setLoading(false);
+    };
+
+    currentPosts();
+  }, [position, status, users, loading]);
+
+  console.log(loading);
 
   return (
     <div className="dashboard">
@@ -123,6 +123,11 @@ const MyJobs = () => {
             </div>
           </form>
         </section>
+        {loading && !error && (
+          <div className="loading__container">
+            <Loading className="loading" />
+          </div>
+        )}
         {error ? (
           <div className="myjobs__error">
             <p>{error} </p>
@@ -130,16 +135,17 @@ const MyJobs = () => {
           </div>
         ) : (
           <section className="myjobs">
-            {user != null && selector.length > 0 ? (
-              user
-                .filter((user) => user.uid === id)
-                .slice(indexOfFirstPost, indexOfLastPost)
-                .map((user) => <JobCard key={user.id} userInfo={user} />)
-            ) : (
-              <p className="myjobs__empty">
-                The list is empty, please add jobs to continue.
-              </p>
-            )}
+            {user != null && !loading
+              ? user
+                  .filter((user) => user.uid === id)
+                  .slice(indexOfFirstPost, indexOfLastPost)
+                  .map((user) => <JobCard key={user.id} userInfo={user} />)
+              : user === null &&
+                !loading && (
+                  <p className="myjobs__empty">
+                    The list is empty, please add jobs to continue.
+                  </p>
+                )}
           </section>
         )}
       </main>

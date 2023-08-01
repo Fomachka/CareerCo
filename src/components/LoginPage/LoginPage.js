@@ -34,11 +34,11 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = accountInfo;
 
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
           setAccount({
@@ -92,11 +92,13 @@ const LoginPage = () => {
                 height={47}
               />
             </div>
+
             <header className="login__header--welcome">
               <h1>Welcome!</h1>
               <p>To continue using this app,</p>
               <p>please sign in first.</p>
             </header>
+
             <div className={`login__error ${error ? "login__error--active" : null}`}>
               {error ? (
                 <>
@@ -104,6 +106,8 @@ const LoginPage = () => {
                     src={closeIcon}
                     alt="close error button"
                     onClick={() => setError(null)}
+                    width={48}
+                    height={48}
                   />
                   <p>{error}</p>
                 </>
@@ -136,15 +140,17 @@ const LoginPage = () => {
                 src={passwordIcon}
                 alt="password hiding icon"
                 className="login__input--icon"
+                width={18}
+                height={18}
               />
             </div>
           </article>
+
           <article className="login__article--credentials">
             <div className="login__article__buttons">
               <button type="submit" className="login__button login__button--signin">
                 Sign In
               </button>
-              <button className="login__button login__button--trydemo">Try Demo</button>
             </div>
             <footer className="login__footer">
               Don't have any account?{" "}

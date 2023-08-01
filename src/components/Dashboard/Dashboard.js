@@ -22,7 +22,9 @@ const Dashboard = () => {
   const setMonth = (data) => {
     if (data) {
       let arr = Array(12).fill(0);
-      let dates = data.map((item) => new Date(item.date.split("/").join("-")).getMonth() + 1);
+      let dates = data.map(
+        (item) => new Date(item.date.split("/").join("-")).getMonth() + 1
+      );
       for (let month of dates) {
         if (arr[month] !== 0) {
           arr[month - 1]++;
@@ -56,7 +58,11 @@ const Dashboard = () => {
             text={"Pending Applications"}
             number={handleUsers("Pending")}
           />
-          <StatusContainer img={blueCase} text={"Interviews Scheduled"} number={users?.length} />
+          <StatusContainer
+            img={blueCase}
+            text={"Interviews Scheduled"}
+            number={users?.length}
+          />
           <StatusContainer
             img={greenCase}
             text={"Offers Received"}

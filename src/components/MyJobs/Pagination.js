@@ -8,16 +8,23 @@ const Pagination = ({ postsPerPage, totalPosts, currentPage, handlePage }) => {
 
   return (
     <div className="pagination">
-      <div className="pagination__btn" onClick={() => handlePage(Math.ceil(currentPage - 1))}>
+      <div
+        className="pagination__btn"
+        onClick={() => handlePage(Math.ceil(currentPage - 1))}
+      >
         <LeftIcon className="pagination__icon" />
       </div>
       <div className="pagination__info">
         Page {Math.ceil(currentPage)} of{" "}
-        {Math.ceil(totalPosts / postsPerPage) < 1 || isNaN(Math.ceil(totalPosts / postsPerPage))
+        {Math.ceil(totalPosts / postsPerPage) < 1 ||
+        isNaN(Math.ceil(totalPosts / postsPerPage))
           ? 1
           : Math.ceil(totalPosts / postsPerPage)}
       </div>
-      <div className="pagination__btn" onClick={() => handlePage(Math.ceil(currentPage + 1))}>
+      <div
+        className="pagination__btn"
+        onClick={() => handlePage(Math.ceil(currentPage + 1))}
+      >
         <RightIcon className="pagination__icon" />
       </div>
     </div>

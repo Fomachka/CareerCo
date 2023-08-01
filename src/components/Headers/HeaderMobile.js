@@ -52,7 +52,11 @@ const HeaderMobile = ({ pageName }) => {
           <div className={`mobile__modal mobile__modal--${modal}`}>
             <header>
               <nav className="header__nav--mobile">
-                <Link to="/dashboard" className="header__logo--mobile" onClick={handleModal}>
+                <Link
+                  to="/dashboard"
+                  className="header__logo--mobile"
+                  onClick={handleModal}
+                >
                   C/CO.
                 </Link>
                 <CloseIcon className="header__nav--mobile--icon" onClick={handleModal} />
@@ -61,25 +65,41 @@ const HeaderMobile = ({ pageName }) => {
             <section className="mobile__modal--menu">
               <ul className="mobile__modal--ul">
                 <li className="mobile__modal--li">
-                  <Link to="/dashboard" className="mobile__modal--link" onClick={handleModal}>
+                  <Link
+                    to="/dashboard"
+                    className="mobile__modal--link"
+                    onClick={handleModal}
+                  >
                     <DashboardIcon className="mobile__modal--icon" />
                     <p>Dashboard</p>
                   </Link>
                 </li>
                 <li className="mobile__modal--li">
-                  <Link to="/searchjobs" className="mobile__modal--link" onClick={handleModal}>
+                  <Link
+                    to="/searchjobs"
+                    className="mobile__modal--link"
+                    onClick={handleModal}
+                  >
                     <SearchJobsIcon className="mobile__modal--icon" />
                     <p>Search Jobs</p>
                   </Link>
                 </li>
                 <li className="mobile__modal--li">
-                  <Link to="/myjobs" className="mobile__modal--link" onClick={handleModal}>
+                  <Link
+                    to="/myjobs"
+                    className="mobile__modal--link"
+                    onClick={handleModal}
+                  >
                     <SavedJobsIcon className="mobile__modal--icon" />
                     <p>My Jobs</p>
                   </Link>
                 </li>
                 <li className="mobile__modal--li">
-                  <Link to="/addjob" className="mobile__modal--link" onClick={handleModal}>
+                  <Link
+                    to="/addjob"
+                    className="mobile__modal--link"
+                    onClick={handleModal}
+                  >
                     <AddJobIcon className="mobile__modal--icon" />
                     <p>Add Job</p>
                   </Link>
@@ -97,7 +117,10 @@ const HeaderMobile = ({ pageName }) => {
                 </div>
               </div>
               <Link to="/accounts/login" className="mobile__modal--logoutIcon">
-                <LogoutIcon className="header__nav--mobile--icon" onClick={handleLogout} />
+                <LogoutIcon
+                  className="header__nav--mobile--icon"
+                  onClick={handleLogout}
+                />
               </Link>
             </footer>
           </div>
