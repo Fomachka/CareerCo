@@ -152,7 +152,7 @@ const SignUp = () => {
               now
             </footer>
           </article>
-          <SignUpSVG className="signup__svg" />
+          <SignUpSVG className="login__svg" />
         </form>
       </section>
     </div>

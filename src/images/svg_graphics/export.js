@@ -6,6 +6,7 @@ import { ReactComponent as SortSVG } from "./sort.svg";
 import { ReactComponent as PhoneSVG } from "./phone.svg";
 import { ReactComponent as SearchSVG } from "./search.svg";
 import { ReactComponent as DashboardSVG } from "./dashboard.svg";
+import { ReactComponent as ErrorSVG } from "./error.svg";
 
 export {
   WateringSVG,
@@ -16,4 +17,5 @@ export {
   PhoneSVG,
   SearchSVG,
   DashboardSVG,
+  ErrorSVG,
 };

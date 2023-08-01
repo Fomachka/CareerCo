@@ -5,6 +5,7 @@ import { HeaderMobile, HeaderDesktop } from "../";
 import Job from "./Job";
 import Pagination from "../MyJobs/Pagination";
 import { Loading, StarSingle, ErrorFace } from "../../images/icons/export";
+import { useNavigate } from "react-router-dom";
 
 const SearchJobs = () => {
   const [jobs, setJobs] = useState(null);
@@ -14,6 +15,7 @@ const SearchJobs = () => {
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -61,6 +63,7 @@ const SearchJobs = () => {
         dispatch(setUsersApiData(data));
       } catch (error) {
         setError("Something is wrong, please try again later.");
+        navigate("/error");
       }
       setLoading(false);
     };

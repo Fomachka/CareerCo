@@ -1,7 +1,6 @@
 import passwordIcon from "./password_icon.svg";
 import starsImg from "./star_full.svg";
 import closeIcon from "./close_btn.svg";
-import closeIconBlack from "./close_btn_black.svg";
 import blueCase from "./blue_case.svg";
 import greenCase from "./green_case.svg";
 import redCase from "./red_case.svg";
@@ -34,7 +33,6 @@ export {
   passwordIcon,
   starsImg,
   closeIcon,
-  closeIconBlack,
   blueCase,
   greenCase,
   redCase,
