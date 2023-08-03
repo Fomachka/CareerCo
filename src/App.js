@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 import {
   LoginPage,
   SignUp,
@@ -13,7 +12,6 @@ import {
   Sidebar,
 } from "./components";
 import { BrowserRouter } from "react-router-dom";
-import PrivateRoutes from "./utils/PrivateRoutes";
 import UserProvider from "./context/UserProvider";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -36,14 +34,14 @@ const App = () => {
               <Route path="*" element={<ErrorPage />} />
 
               {user && (
-                <Route element={<PrivateRoutes />}>
+                <>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/searchjobs" element={<SearchJobs />} />
                   <Route path="/searchjobs/:id" element={<JobDetails />} />
                   <Route path="/myjobs" element={<MyJobs />} />
                   <Route path="/addjob" element={<AddJob />} />
                   <Route path="*" element={<ErrorPage />} />
-                </Route>
+                </>
               )}
             </Routes>
           </BrowserRouter>
