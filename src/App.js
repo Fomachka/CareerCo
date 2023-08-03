@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import {
   LoginPage,
   SignUp,
@@ -13,33 +13,42 @@ import {
   Sidebar,
 } from "./components";
 import { BrowserRouter } from "react-router-dom";
-import { useAuth } from "./hooks/use-auth";
+import PrivateRoutes from "./utils/PrivateRoutes";
+import UserProvider from "./context/UserProvider";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const App = () => {
-  const { isLoggedIn } = useAuth();
+  const auth = getAuth();
+  const [user, loading, error] = useAuthState(auth);
 
   return (
-    <div className={`'App' ${isLoggedIn ? "App__logged" : ""}`}>
-      <BrowserRouter>
-        <Sidebar />
-        <Routes>
-          <Route path="*" element={<ErrorPage to="/" />} />
-          <Route path="/" element={<MainPage />} />
-          <Route path="accounts" element={<MainPage />} />
-          <Route path="accounts/login" element={<LoginPage />} />
-          <Route path="accounts/signup" element={<SignUp />} />
+    <div className={`${user ? "App__logged" : ""}`}>
+      {!loading && !error && (
+        <UserProvider>
+          <BrowserRouter>
+            <Sidebar />
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/accounts" element={<MainPage />} />
+              <Route path="/accounts/login" element={<LoginPage />} />
+              <Route path="/accounts/signup" element={<SignUp />} />
+              <Route path="*" element={<ErrorPage />} />
 
-          {isLoggedIn && (
-            <>
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="searchjobs" element={<SearchJobs />} />
-              <Route path="searchjobs/:id" element={<JobDetails />} />
-              <Route path="myjobs" element={<MyJobs />} />
-              <Route path="addjob" element={<AddJob />} />
-            </>
-          )}
-        </Routes>
-      </BrowserRouter>
+              {user && (
+                <Route element={<PrivateRoutes />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/searchjobs" element={<SearchJobs />} />
+                  <Route path="/searchjobs/:id" element={<JobDetails />} />
+                  <Route path="/myjobs" element={<MyJobs />} />
+                  <Route path="/addjob" element={<AddJob />} />
+                  <Route path="*" element={<ErrorPage />} />
+                </Route>
+              )}
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
+      )}
     </div>
   );
 };

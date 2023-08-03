@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 
 const ErrorPage = () => {
-  const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
     if (isLoggedIn) navigate("/dashboard");

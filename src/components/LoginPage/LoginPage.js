@@ -48,6 +48,7 @@ const LoginPage = () => {
             name: user.displayName,
           })
         );
+
         navigate("/dashboard");
       })
       .catch((error) => {

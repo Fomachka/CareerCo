@@ -6,8 +6,10 @@ export function useAuth() {
   const auth = getAuth();
   const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setIsLogged(true);
@@ -15,6 +17,7 @@ export function useAuth() {
       } else {
         setIsLogged(false);
       }
+      setIsLoading(false);
     });
 
     return () => unsubscribe();
@@ -26,5 +29,6 @@ export function useAuth() {
     token: user.accessToken,
     id: user.uid,
     name: user.displayName,
+    isLoading: isLoading,
   };
 }

@@ -81,8 +81,6 @@ const MyJobs = () => {
     currentPosts();
   }, [position, status, users, loading]);
 
-  console.log(loading);
-
   return (
     <div className="dashboard">
       <HeaderMobile pageName="My Jobs" />

@@ -19,7 +19,7 @@ const MainPage = () => {
       }
     };
     handleLogout();
-  }, []);
+  }, [auth, navigate]);
 
   return (
     <div className="mainpage">

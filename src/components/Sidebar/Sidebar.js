@@ -45,6 +45,10 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
+    setActive(location.pathname.substring(1));
+  }, [location.pathname]);
+
+  useEffect(() => {
     if (window.location.pathname) {
       handleSVG();
     }
@@ -53,10 +57,7 @@ const Sidebar = () => {
   return (
     <>
       {isLoggedIn && (
-        <nav
-          className="sidebar"
-          // style={{ display: location.pathname === "/error" ? "none" : "" }}
-        >
+        <nav className="sidebar">
           <nav className="sidebar__nav">
             <Link className="sidebar__logo" to="/dashboard">
               CAREER/CO.
