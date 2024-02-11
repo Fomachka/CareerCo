@@ -164,6 +164,7 @@
 .login__header--welcome {
   text-align: center;
   color: var(--color-black);
+  margin-bottom: 40px;
 }
 
 .login__header--welcome h1 {
@@ -257,28 +258,6 @@
 .login__footer--link {
   color: var(--color-black-dark);
   text-decoration: none;
-}
-
-.login__error {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-  padding: 0px 20px;
-  margin: 2vh auto;
-}
-
-.login__error--active {
-  background: var(--color-red);
-  color: var(--color-background);
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  text-align: center;
-  height: 70px;
-}
-.login__error img {
-  height: 25px;
-  width: 25px;
 }
 
 .login__form {
@@ -1528,6 +1507,10 @@
   .App__logged {
     display: flex;
     flex-direction: row;
+  }
+
+  .login__footer {
+    font-size: 0.85rem;
   }
 
   .error__page {

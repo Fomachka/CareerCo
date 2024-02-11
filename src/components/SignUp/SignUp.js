@@ -7,8 +7,8 @@ import { setAccount } from "../../features/account/accountSlice";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { closeIcon } from "../../images/icons/export";
 import { SignUpSVG } from "../../images/svg_graphics/export";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const auth = getAuth();
@@ -19,7 +19,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     handleLogout();
@@ -46,6 +46,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = values;
+    setIsLoading(true);
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -58,12 +59,17 @@ const SignUp = () => {
             name: user.email,
           })
         );
+        toast.success("Successfully Registered", {
+          duration: 1000,
+        });
+        setIsLoading(false);
         navigate("/accounts/login");
       })
       .catch((error) => {
         if (error.message.trim().includes("email-already")) {
-          setError("Email already in use.");
+          toast.error("Email already in use");
         }
+        setIsLoading(false);
       });
   };
 
@@ -93,20 +99,6 @@ const SignUp = () => {
               <p>To sign up, please complete your</p>
               <p>information below.</p>
             </header>
-            <div className={`login__error ${error ? "login__error--active" : null}`}>
-              {error ? (
-                <>
-                  <img
-                    src={closeIcon}
-                    alt="close error button"
-                    onClick={() => setError(null)}
-                    width={48}
-                    hight={48}
-                  />
-                  <p>{error}</p>
-                </>
-              ) : null}
-            </div>
           </article>
           <article className="login__article--credentials">
             <input
@@ -142,7 +134,7 @@ const SignUp = () => {
           </article>
           <article className="login__article--credentials">
             <button type="submit" className="login__button login__button--signin">
-              Sign Up
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
             <footer className="login__footer">
               Already have an account?{" "}

@@ -7,9 +7,8 @@ import { setAccount } from "../../features/account/accountSlice";
 import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { signOut } from "firebase/auth";
-
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { closeIcon } from "../../images/icons/export";
 
 import { BuildingSVG } from "../../images/svg_graphics/export";
 
@@ -17,9 +16,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = getAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [accountInfo, setAccountInfo] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
 
   useEffect(() => {
     handleLogout();
@@ -37,6 +36,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = accountInfo;
+    setIsLoading(true);
 
     await signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -49,17 +49,22 @@ const LoginPage = () => {
           })
         );
 
+        setIsLoading(false);
+        toast.success("Successfully Registered", {
+          duration: 1000,
+        });
         navigate("/dashboard");
       })
       .catch((error) => {
         if (error.code === "auth/too-many-requests") {
-          setError("Please, try again later.");
+          toast.error("Too many attempts. Try again later.");
         } else if (error.code === "auth/user-not-found") {
-          setError("User not found, sign up below.");
+          toast.error("User not found, sign up below");
         } else if (error.code === "auth/wrong-password") {
-          setError("Wrong password");
+          toast.error("Wrong password");
         }
       });
+    setIsLoading(false);
   };
 
   const handleLogout = async (e) => {
@@ -99,21 +104,6 @@ const LoginPage = () => {
               <p>To continue using this app,</p>
               <p>please sign in first.</p>
             </header>
-
-            <div className={`login__error ${error ? "login__error--active" : null}`}>
-              {error ? (
-                <>
-                  <img
-                    src={closeIcon}
-                    alt="close error button"
-                    onClick={() => setError(null)}
-                    width={48}
-                    height={48}
-                  />
-                  <p>{error}</p>
-                </>
-              ) : null}
-            </div>
           </article>
           <article className="login__article--credentials">
             <input
@@ -150,7 +140,7 @@ const LoginPage = () => {
           <article className="login__article--credentials">
             <div className="login__article__buttons">
               <button type="submit" className="login__button login__button--signin">
-                Sign In
+                {isLoading ? "Loading..." : "Sign In"}
               </button>
             </div>
             <footer className="login__footer">
