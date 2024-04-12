@@ -1,6 +1,7 @@
 # CareerCo
-![2024-04-11 17 13 09](https://github.com/Fomachka/CareerCo/assets/47694895/bc5ec2b0-0764-4abf-b2d3-e8ab27f29f18)
+🌏 [Check Online](https://careerco.netlify.app)
 
+![2024-04-12 10 25 17](https://github.com/Fomachka/CareerCo/assets/47694895/2e158c65-7634-4ff8-8dbc-1097f91fde00)
 
 CareerCo is a job searching and managing application built with React.js, Redux Toolkit and Firebase. CareerCo empowers job seekers with a comprehensive platform to streamline their search, manage applications effectively, and present themselves professionally to potential employers. It provides a friendly and efficient solution for navigating today's competitive job market.
  
